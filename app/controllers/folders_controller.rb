@@ -16,7 +16,7 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
-    @folders = current_user.folders
+    @barcode = Barby::Code128B.new(@folder.unique_id)
   end
 
   # GET /folders/new

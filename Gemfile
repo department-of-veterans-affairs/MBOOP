@@ -17,6 +17,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise', '3.0'
 gem 'cancan'
 
+# Makes barcodes
+gem 'barby', '~> 0.5.1'
+
 group :development do
   gem 'sqlite3', '1.3.8'
 end

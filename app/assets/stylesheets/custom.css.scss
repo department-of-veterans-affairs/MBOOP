@@ -1,3 +1,8 @@
+body {
+  padding-top: 60px;
+}
+
+
 .badge-blue {
   background-color: #3a87ad !important;
 }
@@ -18,3 +23,8 @@
 .badge-green:hover {
   background-color: #356635;
 }
+
+table.barby-barcode { border-spacing: 0; }
+tr.barby-row {}
+td.barby-cell { width: 3px; height: 30px; }
+td.barby-cell.on { background: #000; }

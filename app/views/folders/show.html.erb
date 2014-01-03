@@ -1,4 +1,4 @@
-<p class="alert alert-success"><%= notice %></p>
+<div class="alert"><%= notice %></div>
 
 <h3>IQ #<%= @folder.unique_id %> <span class="badge badge-<%= @folder.category %>"><%= @folder.category %></span>
 </h3>
@@ -8,6 +8,4 @@
   <%= @folder.user.display_name %>
 </p>
 
-<% if can? :update, @folder %>
-  <%= link_to 'Edit', edit_folder_path(@folder) %>
-<% end %>
+<%= raw @barcode.to_svg %>
