@@ -1,11 +1,20 @@
-.blue {
-  background-color: LightBlue;
+.badge-blue {
+  background-color: #3a87ad !important;
+}
+.badge-blue:hover {
+  background-color: #2d6987;
 }
 
-.yellow {
-  background-color: LightYellow;
+.badge-yellow {
+  background-color: #f89406 !important;
+}
+.badge-yellow:hover {
+  background-color: #c67605;
 }
 
-.green {
-  background-color: LightGreen;
+.badge-green {
+  background-color: #468847 !important;
+}
+.badge-green:hover {
+  background-color: #356635;
 }

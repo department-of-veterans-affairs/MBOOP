@@ -11,8 +11,8 @@
 
   <tbody>
     <% @folders.each do |folder| %>
-      <tr class="<%= folder.category %> info">
-        <td><%= link_to folder.unique_id, folder %></td>
+      <tr>
+        <td><%= link_to folder.unique_id, folder %> <span class="badge badge-<%= folder.category %>"><%= folder.category %></span></td>
         <td><%= folder.user.display_name %></td>
         <td><%= link_to 'Edit', edit_folder_path(folder), class: 'btn btn-default btn-sm' %>
         <%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>

@@ -1,3 +1,4 @@
+  <div class="form-group">
 <%= form_for(@folder) do |f| %>
   <% if @folder.errors.any? %>
     <div id="error_explanation">
@@ -10,16 +11,16 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-group">
 
-  <div class="field">
-    <%= f.label :unique_id %><br>
-    <%= f.text_field :unique_id %>
+
+  <div class="form-group">
+    <%= f.label :unique_id, "IQ #" %><br>
+    <%= f.text_field :unique_id, class: 'form-control' %>
   </div>
-  <div class="control-group">
+  <div class="form-group">
     <%= f.label :category, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :category, Folder::FOLDER_CATEGORIES, :prompt => "Select Color" %>
+      <%= f.select :category, Folder::FOLDER_CATEGORIES, :prompt => "Select Color", class: 'form-control' %>
     </div>
   </div>
   <div class="actions">
