@@ -5,6 +5,7 @@ Folderfinder::Application.routes.draw do
   devise_for :users
   
   post 'complete' => 'folders#complete'
+  post 'move' => 'folders#move'
   
   
   #root 

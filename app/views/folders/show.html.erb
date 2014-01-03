@@ -10,6 +10,29 @@
 
 <%= raw @barcode.to_svg %>
 
+<% if can? :move, @folder %>
+<%= form_for(@folder) do |f| %>
+  <% if @folder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+
+      <ul>
+      <% @folder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= hidden_field_tag(:folder_id, @folder.id) %>
+
+        <%= f.collection_select :user_id, User.all, :id, :display_name, :prompt => "Move to Another Person..." %>
+
+    <%= f.submit "Move", class: 'btn btn-primary btn-xs' %>
+
+  </div>
+<% end %>
+<% end %>
+
 <% if can? :complete, @folder %>
   <p><%= button_to 'Mark Complete', {:action=>:complete,:id=>@folder.id }, { :class => 'btn btn-success btn-sm pull-left' } %></p>
 <% end %>

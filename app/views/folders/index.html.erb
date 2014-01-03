@@ -7,6 +7,7 @@
       <th><%= sortable "user_id", "Currently with" %></th>
       <th><%= sortable "updated_at", "Last Moved on" %></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -24,6 +25,33 @@
           <% if can? :delete, @folder %>&nbsp;
           <%= link_to 'Delete', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
           <% end %></ul></td>
+          <td>
+            <% if can? :move, @folder %>
+            <%= form_for(folder) do |f| %>
+              <% if folder.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+
+                  <ul>
+                  <% folder.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <%= hidden_field_tag(:folder_id, folder.id) %>
+
+                    <%= f.collection_select :user_id, User.all, :id, :display_name, :prompt => "Move to Another Person..." %>
+
+
+
+                <%= f.submit "Move", class: 'btn btn-primary btn-xs' %>
+
+              </div>
+            <% end %>
+            <% end %>
+            
+            </td>
       </tr>
     <% end %>
   </tbody>
@@ -33,3 +61,5 @@
 <% if can? :create, @folder %>
 <%= link_to 'Create New Folder', new_folder_path, class: 'btn btn-primary' %>
 <% end %>
+
+

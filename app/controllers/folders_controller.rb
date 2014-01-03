@@ -5,7 +5,7 @@ class FoldersController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def mine
-    @folders = current_user.folders.where(:completed => false)
+    @folders = current_user.folders.where(:completed => false).order(sort_column + ' ' + sort_direction)
   end
   
   def complete
@@ -14,14 +14,15 @@ class FoldersController < ApplicationController
   end
   
   def move
-    @folder.user_id()
+    @folder = Folder.find(params[:id])
+    @folder.update_attributes(:user_id => params[:new_user_id])
     redirect_to folders_path
   end
 
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.where(:completed => false)
+    @folders = Folder.where(:completed => false).order(sort_column + ' ' + sort_direction)
   end
 
   # GET /folders/1
