@@ -26,7 +26,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <% if user_signed_in? %>
-              <li><a href="#">My Folders</a></li>
+              <li><a href="/mine">My Folders</a></li>
               <li><%= link_to('All Folders', folders_path) %></a></li>
               <% if can? :create, @folder %>
                 <li><%= link_to('New Folder', new_folder_path) %></a></li>
@@ -36,6 +36,9 @@
               <% end %>
               </ul>
               <ul class="nav navbar-nav navbar-right">
+                  <li>
+                  <%= link_to('Edit Account', edit_user_registration_path) %>
+                  </li>
                 <li>
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
                 </li>

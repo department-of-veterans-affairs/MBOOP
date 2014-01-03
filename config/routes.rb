@@ -1,7 +1,10 @@
 Folderfinder::Application.routes.draw do
+  get 'mine' => 'folders#mine'
   resources :folders
 
   devise_for :users
+  
+  
   
   #root 
   

@@ -3,6 +3,10 @@ class FoldersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource except: [:create]
 
+  def mine
+    @folders = current_user.folders
+  end
+
   # GET /folders
   # GET /folders.json
   def index
