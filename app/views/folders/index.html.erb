@@ -1,26 +1,21 @@
-<h1>Listing folders</h1>
+<h1>All Folders</h1>
 
-<table>
+<table class="table table-condensed">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Unique</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
+      <th>IQ #</th>
+      <th>Currently with</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @folders.each do |folder| %>
-      <tr>
-        <td><%= folder.category %></td>
-        <td><%= folder.unique_id %></td>
-        <td><%= folder.user_id %></td>
-        <td><%= link_to 'Show', folder %></td>
-        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
-        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <tr class="<%= folder.category %> info">
+        <td><%= link_to folder.unique_id, folder %></td>
+        <td><%= folder.user.display_name %></td>
+        <td><%= link_to 'Edit', edit_folder_path(folder), class: 'btn btn-default btn-sm' %>
+        <%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Folder', new_folder_path %>
+<%= link_to 'Create New Folder', new_folder_path, class: 'btn btn-primary' %>

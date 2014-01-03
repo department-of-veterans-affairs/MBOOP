@@ -4,9 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   
+  def after_sign_in_path_for(user)
+    folders_path
+  end
+  
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up, :account_update) << :display_name
+       devise_parameter_sanitizer.for(:sign_up) { |u| 
+          u.permit(:email, :password, :password_confirmation, :display_name) 
+       }
+       devise_parameter_sanitizer.for(:account_update) { |u| 
+           u.permit(:email, :password, :password_confirmation, :display_name) 
+        }
     end
 end

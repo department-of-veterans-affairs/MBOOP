@@ -5,5 +5,5 @@ class Folder < ActiveRecord::Base
   validates :unique_id, :presence => true
   validates :unique_id, uniqueness: true
   
-  FOLDER_CATEGORIES = ["Green", "Blue", "Yellow"]
+  FOLDER_CATEGORIES = ["green", "blue", "yellow"]
 end

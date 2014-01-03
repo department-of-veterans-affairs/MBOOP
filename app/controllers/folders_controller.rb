@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /folders
   # GET /folders.json
@@ -10,6 +11,7 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
+    @folders = current_user.folders
   end
 
   # GET /folders/new
