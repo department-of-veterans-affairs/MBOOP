@@ -27,9 +27,13 @@
             <ul class="nav navbar-nav">
               <% if user_signed_in? %>
               <li><a href="#">My Folders</a></li>
-              <li><a href="#about">All Folders</a></li>
-              <li><a href="#contact">New Folder</a></li>
-              <li><a href="#contact">Manage Users</a></li>
+              <li><%= link_to('All Folders', folders_path) %></a></li>
+              <% if can? :create, @folder %>
+                <li><%= link_to('New Folder', new_folder_path) %></a></li>
+              <% end %>
+              <% if can? :create, @user %>
+                <li><a href="#contact">Manage Users</a></li>
+              <% end %>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li>

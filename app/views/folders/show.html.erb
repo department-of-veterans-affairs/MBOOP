@@ -8,4 +8,6 @@
   <%= @folder.user.display_name %>
 </p>
 
-<%= link_to 'Edit', edit_folder_path(@folder) %>
+<% if can? :update, @folder %>
+  <%= link_to 'Edit', edit_folder_path(@folder) %>
+<% end %>
