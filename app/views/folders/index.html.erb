@@ -1,0 +1,31 @@
+<h1>Listing folders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Unique</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @folders.each do |folder| %>
+      <tr>
+        <td><%= folder.category %></td>
+        <td><%= folder.unique_id %></td>
+        <td><%= folder.user_id %></td>
+        <td><%= link_to 'Show', folder %></td>
+        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
+        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Folder', new_folder_path %>
