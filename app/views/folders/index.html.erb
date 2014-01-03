@@ -23,10 +23,10 @@
             <%= button_to 'Mark Complete', {:action=>:complete,:id=>folder.id }, { :class => 'btn btn-success btn-sm pull-left' } %>
           <% end %>
           <% if can? :delete, @folder %>&nbsp;
-          <%= link_to 'Delete', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Delete', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm pull-left' %>
           <% end %></ul></td>
           <td>
-            <% if can? :move, @folder %>
+            <% if (folder.user_id == current_user.id) || (can? :update, @folder) %>
             <%= form_for(folder) do |f| %>
               <% if folder.errors.any? %>
                 <div id="error_explanation">

@@ -10,7 +10,7 @@
 
 <%= raw @barcode.to_svg %>
 
-<% if can? :move, @folder %>
+<% if @folder.user_id == current_user.id %>
 <%= form_for(@folder) do |f| %>
   <% if @folder.errors.any? %>
     <div id="error_explanation">

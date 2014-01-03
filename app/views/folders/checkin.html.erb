@@ -1,0 +1,13 @@
+<div class="alert"><%= notice %></div>
+
+<h3>Check in a Folder
+</h3>
+
+<%= form_tag("/checkedin", method: "post") do %>
+
+  <div class="form-group">
+    <%= text_field_tag(:unique_id) %>
+  </div>
+    <%= submit_tag("Check in") %>
+  </div>
+<% end %>

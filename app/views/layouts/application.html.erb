@@ -26,6 +26,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <% if user_signed_in? %>
+              <li><a href="/checkin">CHECK IN</a></li>
               <li><a href="/mine">My Folders</a></li>
               <li><%= link_to('All Folders', folders_path) %></a></li>
               <% if can? :create, @folder %>

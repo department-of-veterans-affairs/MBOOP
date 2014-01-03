@@ -13,9 +13,16 @@ class FoldersController < ApplicationController
     redirect_to folders_path
   end
   
+  def checkedin
+    @folder = Folder.where(:unique_id => params[:unique_id]).first
+    #redirect_to @folder
+    @folder.update_attributes(:user_id => current_user.id)
+    redirect_to mine_path
+  end
+  
   def move
     @folder = Folder.find(params[:id])
-    @folder.update_attributes(:user_id => params[:new_user_id])
+    @folder.update_attributes(:user_id => params[:user_id])
     redirect_to folders_path
   end
 
