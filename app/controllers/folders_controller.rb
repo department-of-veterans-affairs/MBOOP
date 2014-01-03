@@ -1,16 +1,27 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :complete, :move]
   before_filter :authenticate_user!
+  helper_method :sort_column, :sort_direction
   load_and_authorize_resource except: [:create]
 
   def mine
-    @folders = current_user.folders
+    @folders = current_user.folders.where(:completed => false)
+  end
+  
+  def complete
+    @folder.update_attributes(:completed => true)
+    redirect_to folders_path
+  end
+  
+  def move
+    @folder.user_id()
+    redirect_to folders_path
   end
 
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    @folders = Folder.where(:completed => false)
   end
 
   # GET /folders/1
@@ -78,5 +89,13 @@ class FoldersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
       params.require(:folder).permit(:category, :unique_id, :user_id)
+    end
+    
+    def sort_column
+      Folder.column_names.include?(params[:sort]) ? params[:sort] : "unique_id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
 end

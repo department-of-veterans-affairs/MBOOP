@@ -9,3 +9,7 @@
 </p>
 
 <%= raw @barcode.to_svg %>
+
+<% if can? :complete, @folder %>
+  <p><%= button_to 'Mark Complete', {:action=>:complete,:id=>@folder.id }, { :class => 'btn btn-success btn-sm pull-left' } %></p>
+<% end %>

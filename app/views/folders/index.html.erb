@@ -3,9 +3,9 @@
 <table class="table table-condensed">
   <thead>
     <tr>
-      <th>IQ #</th>
-      <th>Currently with</th>
-      <th>Last Moved on</th>
+      <th><%= sortable "unique_id", "IQ #" %></th>
+      <th><%= sortable "user_id", "Currently with" %></th>
+      <th><%= sortable "updated_at", "Last Moved on" %></th>
       <th></th>
     </tr>
   </thead>
@@ -17,12 +17,13 @@
         <td><%= folder.user.display_name %></td>
         <td><%= folder.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%A, %m/%d/%Y at %H:%M") %></td>
         <td>
-        <% if can? :update, @folder %>
-        <%= link_to 'Edit', edit_folder_path(folder), class: 'btn btn-default btn-sm' %>
-        <% end %>
-        <% if can? :delete, @folder %>
-        <%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-        <% end %></td>
+          <ul>
+          <% if can? :complete, @folder %>
+            <%= button_to 'Mark Complete', {:action=>:complete,:id=>folder.id }, { :class => 'btn btn-success btn-sm pull-left' } %>
+          <% end %>
+          <% if can? :delete, @folder %>&nbsp;
+          <%= link_to 'Delete', folder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <% end %></ul></td>
       </tr>
     <% end %>
   </tbody>

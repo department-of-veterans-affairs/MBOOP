@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103172039) do
+ActiveRecord::Schema.define(version: 20140103202706) do
 
   create_table "folders", force: true do |t|
     t.string   "category"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140103172039) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",  default: false
   end
 
   create_table "users", force: true do |t|
