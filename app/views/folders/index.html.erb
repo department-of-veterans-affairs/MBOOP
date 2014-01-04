@@ -41,11 +41,9 @@
               <% end %>
               <%= hidden_field_tag(:folder_id, folder.id) %>
 
-                    <%= f.collection_select :user_id, User.all, :id, :display_name, :prompt => "Move to Another Person..." %>
+              <%= f.collection_select :user_id, User.all, :id, :display_name, :prompt => "Move to Another Person..." %>
 
-
-
-                <%= f.submit "Move", class: 'btn btn-primary btn-xs' %>
+              <%= f.submit "Move", class: 'btn btn-primary btn-xs' %>
 
               </div>
             <% end %>

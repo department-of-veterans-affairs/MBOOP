@@ -36,6 +36,7 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     @barcode = Barby::Code128B.new(@folder.unique_id)
+    @histories = @folder.histories
   end
 
   # GET /folders/new
@@ -67,6 +68,11 @@ class FoldersController < ApplicationController
   # PATCH/PUT /folders/1
   # PATCH/PUT /folders/1.json
   def update
+    
+    @new_owner = User.find(params[:folder][:user_id]).display_name
+    @story = "Moved from " + @folder.user.display_name + " to " + @new_owner + " by " + current_user.display_name
+    @history = @folder.histories.build(:action => @story)
+    
     respond_to do |format|
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folder_id: 1
+  action: MyText
+
+two:
+  folder_id: 1
+  action: MyText

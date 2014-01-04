@@ -34,5 +34,13 @@
 <% end %>
 
 <% if can? :complete, @folder %>
-  <p><%= button_to 'Mark Complete', {:action=>:complete,:id=>@folder.id }, { :class => 'btn btn-success btn-sm pull-left' } %></p>
+  <p><%= button_to 'Mark Complete', {:action=>:complete,:id=>@folder.id }, { :class => 'btn btn-success btn-sm' } %></p>
+<% end %>
+
+<h4>History</h4>
+
+<% @histories.each do |history| %>
+
+  <%= history.action %> at <%= history.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%A, %m/%d/%Y at %H:%M") %><br />
+
 <% end %>
