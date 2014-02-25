@@ -6,7 +6,7 @@ class Folder < ActiveRecord::Base
   belongs_to :user
   has_many :histories
   validates :user_id, :presence => true
-  validates :category, :presence => true
+  #validates :category, :presence => true
   validates :unique_id, :presence => true
   validates :unique_id, uniqueness: true
   

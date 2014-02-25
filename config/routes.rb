@@ -9,9 +9,10 @@ Folderfinder::Application.routes.draw do
   post 'checkedin' => 'folders#checkedin'
   get 'checkin' => 'folders#checkin'
   
+  root 'folders#mine'
   
   
-  #root 
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
