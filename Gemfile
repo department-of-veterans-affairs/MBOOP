@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # For logging in
-gem 'devise', '3.0'
+gem 'devise', '3.2.4'
 gem 'cancan'
 
 # Makes barcodes
