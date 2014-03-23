@@ -16,9 +16,15 @@ class FoldersController < ApplicationController
   def checkedin
     @folder = Folder.where(:unique_id => params[:unique_id]).first
     if @folder
+      @story = "Moved from " + @folder.user.display_name + " to " + current_user.display_name + " by " + current_user.display_name
       @folder.update_attributes(:user_id => current_user.id)
+      @history = @folder.histories.build(:action => @story)
+      @history.save
     else
       @folder = current_user.folders.create(:unique_id => params[:unique_id])
+      @story = "Created by " + current_user.display_name
+      @history = @folder.histories.build(:action => @story)
+      @history.save
     end
     redirect_to mine_path
   end
@@ -56,9 +62,11 @@ class FoldersController < ApplicationController
   def create
     #@folder = Folder.new(folder_params)
     @folder = current_user.folders.build(folder_params)
-
+    @story = "Created by " + current_user.display_name
+    @history = @folder.histories.build(:action => @story)
     respond_to do |format|
       if @folder.save
+        
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render action: 'show', status: :created, location: @folder }
       else
