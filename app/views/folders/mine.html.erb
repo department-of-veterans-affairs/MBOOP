@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><%= sortable "unique_id", "IQ #" %></th>
+      <th>Subject</th>
       <th><%= sortable "user_id", "Currently with" %></th>
       <th><%= sortable "updated_at", "Last Moved on" %></th>
       <th></th>
@@ -15,6 +16,7 @@
     <% @folders.each do |folder| %>
       <tr>
         <td><%= link_to folder.unique_id, folder %> <span class="badge badge-<%= folder.category %>"><%= folder.category %></span></td>
+        <td><%= folder.subject %></td>
         <td><%= folder.user.display_name %></td>
         <td><%= folder.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%A, %m/%d/%Y at %H:%M") %></td>
         <td>
