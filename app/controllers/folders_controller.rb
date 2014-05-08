@@ -80,9 +80,11 @@ class FoldersController < ApplicationController
   # PATCH/PUT /folders/1.json
   def update
     
-    @new_owner = User.find(params[:folder][:user_id]).display_name
-    @story = "Moved from " + @folder.user.display_name + " to " + @new_owner + " by " + current_user.display_name
-    @history = @folder.histories.build(:action => @story)
+    if params[:folder][:user_id]
+      @new_owner = User.find(params[:folder][:user_id]).display_name
+      @story = "Moved from " + @folder.user.display_name + " to " + @new_owner + " by " + current_user.display_name
+      @history = @folder.histories.build(:action => @story)
+    end
     
     respond_to do |format|
       if @folder.update(folder_params)
