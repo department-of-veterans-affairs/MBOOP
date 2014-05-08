@@ -1,6 +1,7 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :complete, :move]
   before_filter :authenticate_user!
+  before_filter :ensure_admin, only: [:edit]
   helper_method :sort_column, :sort_direction
   load_and_authorize_resource except: [:create]
 
@@ -124,5 +125,12 @@ class FoldersController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+    
+    def ensure_admin
+      unless current_user.admin?
+        flash[:error] = "Unauthorized Access"
+        redirect_to root_path
+      end
     end
 end

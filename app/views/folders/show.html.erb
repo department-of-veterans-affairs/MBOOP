@@ -40,7 +40,7 @@
 <% if can? :complete, @folder %>
   <p><%= button_to 'Mark Complete', {:action=>:complete,:id=>@folder.id }, { :class => 'btn btn-success btn-sm' } %></p>
 <% end %>
-<% if can? :edit, @folder %>
+<% if current_user.admin? %>
   <p><%= link_to 'Edit', edit_folder_path, { :class => 'btn btn-success btn-sm' } %></p>
 <% end %>
 
