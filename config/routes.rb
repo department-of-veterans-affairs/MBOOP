@@ -9,6 +9,7 @@ Folderfinder::Application.routes.draw do
   post 'move' => 'folders#move'
   post 'checkedin' => 'folders#checkedin'
   get 'checkin' => 'folders#checkin'
+  get 'completed' => 'folders#completed'
   
   root 'folders#mine'
   
