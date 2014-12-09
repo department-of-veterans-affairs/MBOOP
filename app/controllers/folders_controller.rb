@@ -9,8 +9,17 @@ class FoldersController < ApplicationController
     @folders = current_user.folders.where(:completed => false).order(sort_column + ' ' + sort_direction)
   end
   
+  def completed
+    @folders = Folder.where(:completed => true).order(sort_column + ' ' + sort_direction)
+  end
+  
   def complete
     @folder.update_attributes(:completed => true)
+    redirect_to folders_path
+  end
+  
+  def incomplete
+    @folder.update_attributes(:completed => false)
     redirect_to folders_path
   end
   

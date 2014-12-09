@@ -5,6 +5,7 @@ Folderfinder::Application.routes.draw do
   devise_for :users
   
   post 'complete' => 'folders#complete'
+  post 'incomplete' => 'folders#incomplete'
   post 'move' => 'folders#move'
   post 'checkedin' => 'folders#checkedin'
   get 'checkin' => 'folders#checkin'
