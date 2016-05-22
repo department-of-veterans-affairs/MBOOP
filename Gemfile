@@ -20,6 +20,9 @@ gem 'cancan'
 # Makes barcodes
 gem 'barby', '~> 0.5.1'
 
+# Search
+gem 'ransack'
+
 group :development do
   gem 'sqlite3', '1.3.8'
 end

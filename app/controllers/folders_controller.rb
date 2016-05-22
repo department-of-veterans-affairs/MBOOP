@@ -48,7 +48,9 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.where(:completed => false).order(sort_column + ' ' + sort_direction)
+    @q = Folder.where(:completed => false).order(sort_column + ' ' + sort_direction).ransack(params[:q])
+    @folders = @q.result(distinct: true)
+    #@folders = Folder.where(:completed => false).order(sort_column + ' ' + sort_direction)
   end
 
   # GET /folders/1
