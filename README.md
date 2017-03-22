@@ -32,6 +32,13 @@ $ heroku run rails console --app folderfinder
 irb(main):001:0> User.find_by_email('new.person@va.gov')
 => #<User id: 00, email: "new.person@va.gov", encrypted_password: "xxxx...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2017-02-15 15:46:07", sign_in_count: 39, current_sign_in_at: "2017-02-22 16:59:57", last_sign_in_at: "2017-02-22 15:09:20", current_sign_in_ip: "152.130.15.14", last_sign_in_ip: "152.130.15.14", created_at: "2016-10-17 14:00:15", updated_at: "2017-02-22 16:59:57", display_name: "New Person", admin: false, active: false>
 ```
+
+If you don't know a users full email, you can instead run a command like:
+```
+User.where("email like ?", "%marina%")
+```
+With part of the user's name to be able to find and validate the user. 
+
 #### Make note of the users ID and make updates as needed.
 
 To user give a user admin permissions:
